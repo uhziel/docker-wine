@@ -1,0 +1,14 @@
+FROM uhziel/wine
+
+
+ENV WINEDEBUG=fixme-all
+ENV WINEPREFIX=/opt/tscancode
+ENV WINEARCH=win32
+
+RUN set -eux; \
+        winecfg;
+
+COPY ./tscancode /opt/tscancode
+
+ENTRYPOINT ["wine", "/opt/tscancode/TscanCode.exe", "--version"]
+
